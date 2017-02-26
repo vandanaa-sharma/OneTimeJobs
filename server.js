@@ -9,6 +9,7 @@
 	/** This loads the javascript and css files in the html form **/
 	app.use(express.static(__dirname + '/css'));
 	app.use(express.static(__dirname + '/js'));
+	app.use(express.static(__dirname + '/logs'));
 	
 	app.get('/', function(request,response)
 	{
@@ -43,7 +44,7 @@
 		/** For newline use - "\r\n" in JavaScript **/
 		user = JSON.stringify(user) + "\r\n";
 		/** Note that you are using "fileSytem.appendFile" instead of "writeFile here to prevent overwriting **/
-		fileSystem.appendFile('/public/users.json', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
+		fileSystem.appendFile('/logs/users.html', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
 		{
 			if(error)
 			{
@@ -70,7 +71,7 @@
 		var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
 		data = data + "  " + timeStamp + "\r\n";
 		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-		fileSystem.appendFile('/public/server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
+		fileSystem.appendFile('/logs/server_log.html', data, 'utf-8', {'flags': 'a+'}, function (error) 
 		{
 			// Do nothing
 		});
