@@ -44,7 +44,7 @@
 		/** For newline use - "\r\n" in JavaScript **/
 		user = JSON.stringify(user) + "\r\n";
 		/** Note that you are using "fileSytem.appendFile" instead of "writeFile here to prevent overwriting **/
-		fileSystem.appendFile('/logs/users.html', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
+		fileSystem.appendFile(__dirname + '/logs/users.html', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
 		{
 			if(error)
 			{
@@ -71,7 +71,7 @@
 		var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
 		data = data + "  " + timeStamp + "\r\n";
 		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-		fileSystem.appendFile('/logs/server_log.html', data, 'utf-8', {'flags': 'a+'}, function (error) 
+		fileSystem.appendFile(__dirname + '/logs/server_log.html', data, 'utf-8', {'flags': 'a+'}, function (error) 
 		{
 			// Do nothing
 		});
