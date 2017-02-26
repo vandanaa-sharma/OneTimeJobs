@@ -4,6 +4,9 @@
 	var fileSystem = require('fs');
 	/** body-parser is a module that let's you iterate over the html document tree to read response especially in case of input fields **/
 	var urlencodedParser = parser.urlencoded({extended : false});
+	app.use(express.static(__dirname + '/public'));
+	app.use(express.static(__dirname + '/css'));
+	app.use(express.static(__dirname + '/js'));
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
@@ -12,7 +15,7 @@
 	app.get('/form.html', function(request,response)
 	{
 		_serverLog("Request received for registration");
-		response.sendFile(__dirname + "/" + "form.html" );
+		response.sendFile(__dirname + "/public/" + "form.html" );
 	});
 	app.post('/post_form', urlencodedParser, function(request,response)
 	{
