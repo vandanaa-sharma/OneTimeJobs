@@ -10,8 +10,7 @@
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
-		response.sendFile(__dirname + "/" + "form.html" );
-	});	
+	}
 	app.get('/form.html', function(request,response)
 	{
 		_serverLog("Request received for registration");
