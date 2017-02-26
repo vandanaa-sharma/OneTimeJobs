@@ -42,7 +42,7 @@
 		console.log(user);
 		//response.end(JSON.stringify(user)); /** send json to browser **/
 		/** For newline use - "\r\n" in JavaScript **/
-		user = JSON.stringify(user) + "\r\n";
+		user = JSON.stringify(user);
 		/** Note that you are using "fileSytem.appendFile" instead of "writeFile here to prevent overwriting **/
 		fileSystem.appendFile(__dirname + '/logs/users.json', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
 		{
