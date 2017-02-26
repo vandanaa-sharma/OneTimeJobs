@@ -52,21 +52,19 @@
 		})
 		
 	});
-	var server = app.listen(process.env.PORT || 5000, function(request, response)
-	{
-		var data = "Server runnning on - " +  server.address().port;
-		_serverLog(data);
-		console.log(data);
+		/** Port correction made for heroku **/
+	var server = app.listen(app.get('port'), function() {
+		console.log('App is running, server is listening on port ', app.get('port'));
 	});
 	
-function _serverLog(data)
-{
-	var date = new Date();
-    var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
-	data = data + "  " + timeStamp + "\r\n";
-	/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-	fileSystem.appendFile('server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
+	function _serverLog(data)
 	{
-		// Do nothing
-	});
-}
+		var date = new Date();
+		var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
+		data = data + "  " + timeStamp + "\r\n";
+		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
+		fileSystem.appendFile('server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
+		{
+			// Do nothing
+		});
+	}
