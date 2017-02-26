@@ -56,7 +56,22 @@
 				_serverLog("User added to database");
 				console.log("User added to database");
 			}
-		})
+		});
+		user += "\r\n";
+		/** Temporary for heroku logs **/
+		fileSystem.appendFile(__dirname + '/logs/users.txt', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
+		{
+			if(error)
+			{
+				_serverLog(error.stack);
+				console.log(error.stack);
+			}
+		    else
+			{
+				_serverLog("User added to database");
+				console.log("User added to database");
+			}
+		});
 		
 	});
 	/** Port correction made for heroku **/
