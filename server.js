@@ -52,8 +52,9 @@
 		})
 		
 	});
-		/** Port correction made for heroku **/
-	var server = app.listen(app.get('port'), function() {
+	/** Port correction made for heroku **/
+	const PORT = process.env.PORT || 8081;
+	var server = app.listen(PORT, function() {
 		console.log('App is running, server is listening on port ', app.get('port'));
 	});
 	
