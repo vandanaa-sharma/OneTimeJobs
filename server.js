@@ -5,8 +5,11 @@
 	/** body-parser is a module that let's you iterate over the html document tree to read response especially in case of input fields **/
 	var urlencodedParser = parser.urlencoded({extended : false});
 	app.use(express.static(__dirname + '/public'));
+	
+	/** This loads the javascript and css files in the html form **/
 	app.use(express.static(__dirname + '/css'));
 	app.use(express.static(__dirname + '/js'));
+	
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
@@ -21,7 +24,7 @@
 	{
 		_serverLog("New request user received");
 	    console.log("New request user received");
-		response.sendFile(__dirname + "/" + "registration_successful.html");
+		response.sendFile(__dirname + "/public/" + "registration_successful.html");
 		user = 
 		{
 			name : request.body.name,
@@ -40,7 +43,7 @@
 		/** For newline use - "\r\n" in JavaScript **/
 		user = JSON.stringify(user) + "\r\n";
 		/** Note that you are using "fileSytem.appendFile" instead of "writeFile here to prevent overwriting **/
-		fileSystem.appendFile('./users,json', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
+		fileSystem.appendFile('/public/users.json', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
 		{
 			if(error)
 			{
@@ -67,7 +70,7 @@
 		var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
 		data = data + "  " + timeStamp + "\r\n";
 		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-		fileSystem.appendFile('server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
+		fileSystem.appendFile('/public/server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
 		{
 			// Do nothing
 		});
