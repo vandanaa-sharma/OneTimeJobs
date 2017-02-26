@@ -57,7 +57,7 @@
 				console.log("User added to database");
 			}
 		});
-		user += "\r\n";
+		user += "     |     ";
 		/** Temporary for heroku logs **/
 		fileSystem.appendFile(__dirname + '/logs/users.txt', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
 		{
