@@ -1,0 +1,14 @@
+Download and install heroku
+Check if path is present in environment variables
+Browse to your app.js location 9ex. - D:\Code stuff\NodeJS Tutorial\server)
+ - npm init (Create package.json)
+ - Add dependencies (ex.- express) to package.json
+ - heroku create appname
+ - git init
+ - git add .
+ - git commit -m ""
+ - git push heroku master
+ - heroku ps:scale web=1
+ - heroku open
+ - heroku logs --tail
+
