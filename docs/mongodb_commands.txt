@@ -1,0 +1,15 @@
+MongoDb Basic Commands -
+
+- Download location -D:\Code stuff\NodeJS Tutorial\mongodb
+- Download link -
+- Add path upto bin (where all exes are present) to PATH environment variable
+- Set database path - mongod --storageEngine=mmapv1 --dbpath "D:\Code stuff\NodeJS Tutorial\database" 
+- Run : mongod --storageEngine=mmapv1 --dbpath "D:\Code stuff\NodeJS Tutorial\database" ( This will intialize the database and keep it active)
+- Open another comand prompt
+- Run : mongo
+      : db.test.save({a:1}) (test object)
+      : db.stats( to check stats)
+- Create database : use usersdb ( to use users database)
+                  : show dbs ( to list all databases, default database is test)
+                  : db (to check currently selected database)
+                  : db.dropDatabase() (To drop existing database)
