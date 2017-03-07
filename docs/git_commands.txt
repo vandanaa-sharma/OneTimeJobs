@@ -1,0 +1,13 @@
+$git init
+$git add .
+$git commit -m (namefor the commit)
+$git remote add (remotename) (githuburl)
+
+$git pull/push (remotename) beatplayer master
+$ git remote show (remotename)
+
+How to create a branch - 
+$ git checkout -b [name_of_your_new_branch]
+$ git push remoteName [name_of_your_new_branch]
+$ git branch (to check created branches)
+$ git fetch [name_of_your_remote] branchName(update from serverbranch)
