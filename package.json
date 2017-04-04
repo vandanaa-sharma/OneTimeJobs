@@ -11,9 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/onethena/OneTimeJobs.git"
   },
-  "dependencies" :
-  { 
-    "express" : "4.14.1"
+  "dependencies": {
+    "express": "~4.14.1",
+    "mongodb": "^2.2.25"
   },
   "keywords": [
     "webserver"
