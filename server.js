@@ -20,13 +20,14 @@
 	mongoClient.connect(url, function(error, db)
 	{
 		assert.equal(null, error);
-		//_serverLog("Correctly connected to database server");
+		_serverLog("Correctly connected to database server");
 		/** Create a database collection for registered users - if you use {strict:true} as second argument it will throw an 
 		error if collection already exists. Otherwise do nothing **/
 		db.createCollection('users', function(error, collection) {});
-		/** Users collection - not using "var" here makes this variable global **/
-		collection = db.collection('users');
-		
+		/** For mydb and collection - not using "var" here makes this variable global **/
+		collection = db.collection('users');		
+		mydb = db;
+
 		if(error)
 		{
 			_serverLog("Database could not initialised, please try again later");
@@ -34,6 +35,7 @@
 		}
 		//db.close();
 	});
+	
 	
 	/** Using express.static middleware - express,static is built-in middleware **/
 	app.use(express.static(__dirname + '/public'));   /** Images **/	
@@ -70,14 +72,22 @@
 		
 		_serverLog(JSON.stringify(user));
 
-		/** Add user to database **/
-		collection.insert(user, function(error, data)
+		/** Add user to database **/	
+		try
 		{
-			if(error)
-				_serverLog("FATAL - Something went wrong, user not added");
-			else
-				_serverLog("User added to database successfully");
-		});
+			collection.insert(user, function(error, data)
+			{
+				if(error)
+					_serverLog("FATAL - Something went wrong, user not added");
+				else
+					_serverLog("User added to database successfully");
+			});
+		}
+		catch(error)
+		{
+			_serverLog("FATAL - Something went wrong, user not added");
+			/** TODO - Revert the user to the registration page with flash error **/
+		}
 
 		//response.end(JSON.stringify(user)); /** send json to browser **/
 		
@@ -95,6 +105,21 @@
 		});
 		
 	});
+	
+	/** TODO- add admin authentication to this page - Improve UI**/
+	app.get('/users.html', function(request,response)
+	{
+		_serverLog("Request received for users list");
+		mydb.collection('users').find({}).toArray(function(error, data)
+		{
+			if (error) 
+				;
+			else 
+				response.status(200).json(data);
+		});
+		//db.getCollection('users').find().forEach("do something"); 
+	});	
+	
 	/** Port correction made for heroku **/
 	const PORT = process.env.PORT || 8080;
 	var server = app.listen(PORT, function() {
