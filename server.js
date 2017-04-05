@@ -9,8 +9,10 @@
 	var assert = require('assert');
 	
 	/** URL of the local database **/
-	var url = 'mongodb://localhost:27017/test';
-	
+	//var url = 'mongodb://localhost:27017/test';
+	/** URL for heroku database **/
+	var url = process.env.MONGOLAB_URI;		// Run heroku config:set MONGOLAB_URI=mongodb://vandansharma536@gmail.com:myPassword@ds153730.mlab.com:53730/heroku_rdxczr3d to set this variable
+
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)
 	{
