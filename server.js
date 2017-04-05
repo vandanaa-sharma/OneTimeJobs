@@ -8,31 +8,31 @@
 	var mongoClient = require('mongodb').MongoClient;
 	var assert = require('assert');
 	
-	// /** URL of the local database **/
-	// //var url = 'mongodb://localhost:27017/test';
-	// /** URL for heroku database **/
-	// var url = 	process.env.MONGOLAB_URI;	
-	// // Run heroku config:set MONGOLAB_URI=mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d to set this variable
-	// // Add yourself as a user here - https://www.mlab.com/databases/heroku_rdxczr3d#users to get these credentials
+	/** URL of the local database **/
+	//var url = 'mongodb://localhost:27017/test';
+	/** URL for heroku database **/
+	var url = 	"mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d";	//process.env.MONGOLAB_URI;	
+	// Run heroku config:set MONGOLAB_URI=mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d to set this variable
+	// Add yourself as a user here - https://www.mlab.com/databases/heroku_rdxczr3d#users to get these credentials
 
-	// /** Use url to connect to database **/
-	// mongoClient.connect(url, function(error, db)
-	// {
-		// assert.equal(null, error);
-		// _serverLog("Correctly connected to database server");
-		// /** Create a database collection for registered users - if you use {strict:true} as second argument it will throw an 
-		// error if collection already exists. Otherwise do nothing **/
-		// db.createCollection('users', function(error, collection) {});
-		// /** Users collection - not using "var" here makes this variable global **/
-		// collection = db.collection('users');
+	/** Use url to connect to database **/
+	mongoClient.connect(url, function(error, db)
+	{
+		assert.equal(null, error);
+		//_serverLog("Correctly connected to database server");
+		/** Create a database collection for registered users - if you use {strict:true} as second argument it will throw an 
+		error if collection already exists. Otherwise do nothing **/
+		db.createCollection('users', function(error, collection) {});
+		/** Users collection - not using "var" here makes this variable global **/
+		collection = db.collection('users');
 		
-		// if(error)
-		// {
-			// _serverLog("Database could not initialised, please try again later");
-			// return;
-		// }
-		// //db.close();
-	// });
+		if(error)
+		{
+			_serverLog("Database could not initialised, please try again later");
+			return;
+		}
+		//db.close();
+	});
 	
 	/** Using express.static middleware - express,static is built-in middleware **/
 	app.use(express.static(__dirname + '/public'));   /** Images **/	
