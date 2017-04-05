@@ -8,7 +8,7 @@
 	var mongoClient = require('mongodb').MongoClient;
 	var assert = require('assert');
 	
-	/** URL of the local database - uncomment this and comment heroku's url to test locally**/
+	/** URL of the local database - uncomment this and comment heroku's url to test locally **/
 	//var url = 'mongodb://localhost:27017/test';
 	/** URL for heroku database **/
 	/** TODO - Make this - process.env.MONGOLAB_URI work **/s	
