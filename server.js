@@ -11,7 +11,7 @@
 	/** URL of the local database - uncomment this and comment heroku's url to test locally **/
 	//var url = 'mongodb://localhost:27017/test';
 	/** URL for heroku database **/
-	/** TODO - Make this - process.env.MONGOLAB_URI work **/s	
+	/** TODO - Make this - process.env.MONGOLAB_URI work **/	
 	var url = 	"mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d";	//process.env.MONGOLAB_URI;	
 	// Run heroku config:set MONGOLAB_URI=mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d to set this variable
 	// Add yourself as a user here - https://www.mlab.com/databases/heroku_rdxczr3d#users to get these credentials
