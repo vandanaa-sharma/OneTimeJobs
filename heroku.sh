@@ -20,7 +20,7 @@
 	heroku open
 	
 	SCRIPTPATH=$(dirname "$SCRIPT")
-	echo "Writing logs in " + "$SCRIPTPATH" + "/logs/herokuLogs.txt"
+	echo "Writing logs in /$SCRIPTPATH/logs/herokuLogs.txt"
 	heroku logs --tail >> "$SCRIPTPATH" + "/logs/herokuLogs.txt"
 	
 	echo "Exiting script"
