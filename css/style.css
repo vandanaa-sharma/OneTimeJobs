@@ -43,7 +43,7 @@ footer a		{ color: #FFF; }
 footer a:hover	{ color: #FFF9C4; }
 
 #full			{ position: relative; height: auto !important; min-height: 100%; width: 100%; overflow: hidden; }
-#main 			{ max-width: 100%; min-height: 380px; width: 35%; background: #FFF; text-align: center; padding: 15px 0; border: 1px solid #459DFF; border-radius: 3px; box-shadow: 0px 1px 1px #C8C8C8; margin: 0 auto 35px auto; overflow: hidden; }
+#main 			{ max-width: 100%; min-height: 380px; width: 38%; background: #FFF; text-align: center; padding: 15px 0; border: 1px solid #459DFF; border-radius: 3px; box-shadow: 0px 1px 1px #C8C8C8; margin: 0 auto 35px auto; overflow: hidden; }
 
 /* Added by Vandana */
 
