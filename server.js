@@ -11,9 +11,9 @@
 	/** URL for the local database - mongodb://localhost:27017/test**/
 	/** URL for heroku - mongodb://<dbuser>:<dbpassword>@ds153730.mlab.com:number/database_name **/
 	/** Use Commands - SET MONGOLAB_URI=url (for Local database )
-	heroku config:set --app AppName url (heroku)
+	heroku config:set --app AppName MONGOLAB_URI=url (heroku)
 	**/
-	var url = "mongodb://onetimejobs:mongodb123@ds153730.mlab.com:53730/heroku_rdxczr3d";  //process.env.MONGOLAB_URI;
+	var url = process.env.MONGOLAB_URI; //"mongodb://onetimejobs:mongodb123@ds153730.mlab.com:53730/heroku_rdxczr3d";  //process.env.MONGOLAB_URI;
 	
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)

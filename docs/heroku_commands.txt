@@ -1,6 +1,6 @@
 Download and install heroku
 Check if path is present in environment variables
-Browse to your app.js location 9ex. - D:\Code stuff\NodeJS Tutorial\server)
+Browse to your app.js location (server.js in our case)
  - npm init (Create package.json)
  - Add dependencies (ex.- express) to package.json
  - heroku create appname
@@ -15,3 +15,6 @@ Browse to your app.js location 9ex. - D:\Code stuff\NodeJS Tutorial\server)
 Change app name - 
 heroku apps:rename NEWNAME --app APPNAME
 - Change heroku remote url after this
+
+Set Database URI - 
+heroku config:set --app AppName url

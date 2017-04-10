@@ -1,20 +1,32 @@
+
+Intialise Git repository -
+
+
 $git init
 $git add .
-$git commit -m (namefor the commit)
-$git remote add (remotename) (githuburl)
+$git commit -m (name for the commit)
+$git remote add (remoteName) (githuburl)
+$git pull (remoteName) branchName (default branch - master)
+$git remote show (remoteName) 
 
-$git pull/push (remotename) remoteName master
-$ git remote show (remotename)
 
-How to create a branch - 
+
+Create a branch - (Be on the branch you wish to checkout from)
+
 $ git checkout -b [name_of_your_new_branch]
 $ git push remoteName [name_of_your_new_branch]
 $ git branch (to check created branches)
 $ git fetch [name_of_your_remote] branchName(update from serverbranch)
 
+
+
 Delete a branch -
+
 Remote - $ git push origin --delete <branch_name>
 Local - $ git branch -d <branch_name>
 
+
+
 Changing remote url - 
+
 git remote set-url remotename "url"
