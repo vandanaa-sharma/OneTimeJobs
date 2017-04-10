@@ -1,7 +1,11 @@
-/** New CSS - 06/04/2017 **/
-/* One time job - CSS */
 
+/* One time job - CSS */
 /* HTML5 */
+
+/* Responsive Web design - this ensures padding and border in total width and height of element */
+* {
+    box-sizing: border-box;
+}
 
 html, body, div, p, h1, h2, h3, h4, h5, h6, a, img, ol, ul, li, form, table, thead, tbody, tr, th, td, article, aside, header, footer, nav, section { padding: 0; border: 0; margin: 0; }
 html, body		{ width: 100%; height: 100%; }

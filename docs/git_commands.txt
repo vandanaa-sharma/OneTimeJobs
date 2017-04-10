@@ -1,10 +1,8 @@
 
 Intialise Git repository -
 
-
 $git init
 $git add .
-$git commit -m (name for the commit)
 $git remote add (remoteName) (githuburl)
 $git pull (remoteName) branchName (default branch - master)
 $git remote show (remoteName) 
@@ -13,11 +11,13 @@ $git remote show (remoteName)
 
 Create a branch - (Be on the branch you wish to checkout from)
 
-$ git checkout -b [name_of_your_new_branch]
-$ git push remoteName [name_of_your_new_branch]
-$ git branch (to check created branches)
-$ git fetch [name_of_your_remote] branchName(update from serverbranch)
-
+$ git checkout -b newBranchName
+$ git push remoteName newBranchNames
+$ git branch 				      (to check created branches)
+$ git fetch remoteName branchName 	      (update from serverbranch)
+$ git status   				      (Check changes to commit)
+$ git commit -m commitName                    (Commit your local changes)
+$ git push remoteName branchName
 
 
 Delete a branch -
@@ -30,3 +30,16 @@ Local - $ git branch -d <branch_name>
 Changing remote url - 
 
 git remote set-url remotename "url"
+
+
+
+Use tagging to mark a significant change set like a release -
+
+$git tag 1.0.0 <commitID>
+CommitId is the leading characters of the changeset ID, up to 10, but must be unique. Get the ID using:	
+$git log
+
+
+To revert all local changes
+
+git reset --hard remoteName/branchName
