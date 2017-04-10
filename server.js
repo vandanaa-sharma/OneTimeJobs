@@ -8,14 +8,9 @@
 	var mongoClient = require('mongodb').MongoClient;
 	var assert = require('assert');
 	
-	/** URL of the local database - uncomment this and comment heroku's url to test locally **/
-	//var url = 'mongodb://localhost:27017/test';
-	/** URL for heroku database **/
-	/** TODO - Make this - process.env.MONGOLAB_URI work **/	
-	var url = 	"mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d";	//process.env.MONGOLAB_URI;	
-	// Run heroku config:set MONGOLAB_URI=mongodb://vandanasharma536:mongodbpassword@ds153730.mlab.com:53730/heroku_rdxczr3d to set this variable
-	// Add yourself as a user here - https://www.mlab.com/databases/heroku_rdxczr3d#users to get these credentials
-
+	/** URL of the local database **/
+	var url = 'mongodb://localhost:27017/test';
+	
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)
 	{
@@ -35,7 +30,6 @@
 		}
 		//db.close();
 	});
-	
 	
 	/** Using express.static middleware - express,static is built-in middleware **/
 	app.use(express.static(__dirname + '/public'));   /** Images **/	
@@ -88,7 +82,7 @@
 			_serverLog("FATAL - Something went wrong, user not added");
 			/** TODO - Revert the user to the registration page with flash error **/
 		}
-
+		
 		//response.end(JSON.stringify(user)); /** send json to browser **/
 		
 		/** For newline use - "\r\n" in JavaScript **/
@@ -103,10 +97,10 @@
 		    else
 				; //_serverLog("User added to database");
 		});
-		
 	});
 	
-	/** TODO- add admin authentication to this page - Improve UI**/
+	/** For admins only - list of all users **/
+	/** TODO- add admin authentication to this page **/
 	app.get('/users.html', function(request,response)
 	{
 		_serverLog("Request received for users list");

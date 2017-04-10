@@ -1,11 +1,7 @@
 MongoDB NodeJS Notes - 
 
 1. npm install --save mongodb (--save adds the dependency to package.json)
-
 2. Import mongodb module in code
-
 3. Connect to local database URL
-
 4. Create a collection
-
-5. To add user => collection.inert
+5. To add user => collection.insert

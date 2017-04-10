@@ -12,3 +12,6 @@ Browse to your app.js location 9ex. - D:\Code stuff\NodeJS Tutorial\server)
  - heroku open
  - heroku logs --tail
 
+Change app name - 
+heroku apps:rename NEWNAME --app APPNAME
+- Change heroku remote url after this
