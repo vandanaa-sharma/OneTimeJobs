@@ -16,7 +16,7 @@ body			{ min-width: 0px; text-align: center; font-family: "Arial", "Helvetica", 
 a				{ color: #039BE5; text-decoration: none; }
 a:hover			{ color: #0288D1; text-decoration: none; }
 
-/* Layout */
+/* Header */
 
 header					{ z-index: 1; position: fixed; width: 100%; height: 50px; opacity: 0.97; background: #0088FF; background-image: linear-gradient(#006CFF, #0088FF); box-shadow: 0px 1px 2px #00B3FF; }
 header #content			{ max-width: 100%; text-align: left; padding: 0px 10px; margin: auto; }
@@ -29,12 +29,14 @@ header form #search	{ display: inline-block; float: right; position: relative; t
 header form #term		{ display: inline-block; width: 380px; height: 30px; font-size: 18px; color: #004D40; background: #F9F9F9; padding: 2px 8px; border: none; border-radius: 5px; margin: 8px 0 8px 0; }
 header form #term:focus	{ outline: none; background: #FFFDE7; box-shadow: 0 0 2px #FFFDE7; }
 
+/** Menu **/
 nav				{ float: right;}
 #menu			{ display: inline-block; }
 #menu li			{ display: inline-block; }
 #menu a			{ display: inline-block; height: 50px; color: #f5f5f5; padding: 12px 20px 12px 20px; }
 #menu a:hover	{ color: #FFF9C4; background-color: rgba(0, 50, 40, 0.3); }
 
+/* Footer */
 footer			{ position: relative; bottom: 0px; left: 0px; width: 100%; background: #0088FF; background-image: linear-gradient(#006CFF, #0088FF); font-size: 12px; color: #fafafa; padding: 3px 10px 4px 10px; }
 footer a		{ color: #FFF; }
 footer a:hover	{ color: #FFF9C4; }
@@ -42,18 +44,39 @@ footer a:hover	{ color: #FFF9C4; }
 #full			{ position: relative; height: auto !important; min-height: 100%; width: 100%; overflow: hidden; }
 .hSpace			{ display: inline-block; width: 100px; max-height: 30px; margin: auto;}
 
+
+/* SlickNav - Do not display on desktop */
+.slicknav_menu	{ display: none; }
+.slicknav_btn { float: right; display: block; position: relative; top: -3px; padding: 10px; margin: 6px 0 0 0; vertical-align: middle; cursor: pointer; }
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar { margin-top: 4px; }
+.slicknav_btn:hover .slicknav_icon-bar	{ box-shadow: 0 0 2px #FFF; }
+.slicknav_menu { box-sizing: border-box; font-size: 16px; background: none; padding: 5px; }
+.slicknav_menu .slicknav_icon-bar	{ display: block; width: 20px; height: 2px; background-color: #FFF; border-radius: 1px; }
+.slicknav_menu:before { content: " "; display: table; }
+.slicknav_menu:after { content: " "; display: table; clear: both; }
+.slicknav_nav { z-index: 0; float: right; position: fixed; top: 50px; box-sizing: border-box; width: 100%; background-color: #004D40; padding: 0; margin: 0 0 0 -5px; overflow: hidden; }
+.slicknav_nav a, .slicknav_nav ul, .slicknav_nav li { display: block; }
+.slicknav_nav a { font-size: 18px; color: #fafafa; text-decoration: none; padding: 9px 2px 10px 2px; }
+.slicknav_nav a:hover { color: #FFF176; background-color: rgba(0, 50, 40, 0.5); }
+.slicknav_nav ul { list-style: none; padding: 0; margin: 0 0 0 20px; overflow: hidden; }
+
+
 /** For mobile devices **/
 @media only screen and (max-width: 768px)
 {
 	header 	{ height:40px; box-shadow: none; }
-	header form #swrap		{ width: 150px;}
-	header a.search_jobs 	{ width: 20px; height: 35px; background: url(/search_button_mobile.png); border-radius: 3px; background-size: 20px 35px; margin: 2px 0 2px 0;}
-	header a.home 	{ width: 60px; height: 40px; background: url(/our_logo_mobile.png); background-size: 60px 40px; margin: 0 0 0 0; }
+	header a.search_jobs 	{ width: 30px; height: 35px; border-radius: 3px; background-size: 30px 35px; margin: 2px 0 2px 0;}
+	header a.home 	{ width: 60px; height: 40px; background: url(/our_logo_mobile.png)no-repeat; background-size: 60px 40px; margin: 0 0 0 0; }
 	header #content 	{ max-width: 100%; text-align: left; padding: 0px 0px; margin: auto; }
-	header form #term		{ width: 180px; height: 30px; font-size: 12px; padding: 2px 5px; border-radius: 3px; margin: 4px 0 4px 0; }
-	.hSpace			{ width: 5px;}
+	header form				{ width: 200px; margin: 0 2px 0 0;}
+	header form #term		{ width: 200px; height: 30px; font-size: 12px; padding: 2px 5px; border-radius: 3px; margin: 4px 0 4px 0; }
+	header form #swrap		{ width: 180px;}
+	
+	.hSpace			{ display:none;}
 	#menu 	{ display: none; }
-	header form				{ width: 180px; margin: 0 2px 0 0;}
+	.slicknav_menu { display: block; margin-bottom: -50px; }
+	
+
 }
 
 /** ----------------  Standard template ends here -----------------**/
@@ -98,7 +121,7 @@ input				{ display: inline-block; width: 250px; height: 26px; font-size: 18px; c
 {
 	#main { width: 90%; font-size: 12px; }
 	table { margin: 0 0 0 -20px;}
-	input { width: 120px;}
+	input { width: 150px;  font-size: 15px;}
 	h2	{ font-size: 20px; font-weight: 400; margin: 15px 0;}
 }
 
