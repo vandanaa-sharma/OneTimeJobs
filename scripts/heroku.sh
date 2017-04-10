@@ -19,9 +19,10 @@
 	heroku ps:scale web=1
 	heroku open
 	
-	SCRIPTPATH=$(dirname "$SCRIPT")
-	echo "Writing logs in " + "$SCRIPTPATH" + "/logs/herokuLogs.txt"
-	heroku logs --tail >> "$SCRIPTPATH" + "/logs/herokuLogs.txt"
+	# TODO - log heroku in local directory
+	#SCRIPTPATH=$(dirname "$SCRIPT")
+	#echo "Writing logs in /$SCRIPTPATH/logs/herokuLogs.txt"
+	#heroku logs --tail >> "$SCRIPTPATH" + "/logs/herokuLogs.txt"
 	
 	echo "Exiting script"
     exit 1

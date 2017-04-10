@@ -13,23 +13,9 @@
 	<body>
 		<div id="full">
 			<header>
-				<div class="slicknav_menu">
-					<a style="outline: medium none;" href="#" aria-haspopup="true" tabindex="0" class="slicknav_btn slicknav_collapsed">
-						<span class="slicknav_menutxt"></span>
-						<span class="slicknav_icon slicknav_no-text">
-							<span class="slicknav_icon-bar"></span>
-							<span class="slicknav_icon-bar"></span>
-							<span class="slicknav_icon-bar"></span>
-						</span>
-					</a>
-					<ul role="menu" aria-hidden="true" style="display: none;" class="slicknav_nav slicknav_hidden">
-						<li><a tabindex="-1" role="menuitem" href="#">Browse Jobs</a></li>
-						<li><a tabindex="-1" role="menuitem" href="#">About Us</a></li>
-						<li><a tabindex="-1" role="menuitem" href="#">Contact Us</a></li>
-					</ul>
-				</div>
 				<div id="content">
 					<a href="#" class="home"></a>
+					<div class="hSpace"></div> <div class="hSpace"></div>
 					<form action="#" method="post" id="search">
 						<div id="swrap">
 							<input autocomplete="off" name="term" id="term" tabindex="1" placeholder="Search" type="text">
@@ -45,15 +31,15 @@
 					</nav>
 				</div>
 			</header>
-			<div class="TopLB">
-			</div>
+			<div class="vSpace"></div>
 			<h2>Registration Form</h2>
 			<div id = "main">
-				<form  class="formTable" id="registration"action="/post_form" method="POST" onsubmit="return validateForm()">
+			<!-- action="/post_form" -->
+				<form  class="formTable" id="registration" action="#"  method="POST" onsubmit="return validateForm()">
 					<table cellspacing="15" cellpadding="0">
 						<tr>
 							<td> Name :</td>
-							<td><input class="inputField" name="name" type="text" required></td>
+							<td><input name="name" type="text" required></td>
 						</tr>
 						<tr>
 							<td> Gender :</td>
@@ -65,31 +51,33 @@
 						</tr>
 						<tr>
 							<td> Age :</td>
-							<td><input class="inputField" name="age" type="number" required></td>
+							<td><input name="age" type="number" required></td>
 						</tr>
 						<tr>
 							<td> Create Password :</td>
-							<td><input class="inputField" name="password" type="password"></td>
+							<td><input name="password" type="password"></td>
 						</tr>
 						<tr>
 							<td> Contact number :</td>
-							<td><input class="inputField" name="contact_number" type="text" required></td>
+							<td><input name="contact_number" type="text" required></td>
 						</tr>
 						<tr>
 							<td> Register as :</td>
-							<td><input type="checkbox" name="recruiter"> Recruiter <input
-								type="checkbox" name="job_seeker"> Job Seeker </td>
+							<td>
+								<input class="cb" type="checkbox" name="recruiter"> Recruiter 
+								<input class="cb" type="checkbox" name="job_seeker"> Job Seeker 
+							</td>
 						</tr>
 						<tr>
 							<td> Location :</td>
-							<td><select class="inputField" name="location">
+							<td><select name="location">
 									<option>Mumbai</option>
 									<option>Pune</option>
 							</select></td>
 						</tr>
 						<tr>
 							<td> Address :</td>
-							<td><textarea class="inputField" name="address" rows="3" columns="10"></textarea></td>
+							<td><textarea name="address" rows="3" columns="10"></textarea></td>
 						</tr>
 						<tr>
 							<td style="line-height: 10px;" colspan=3>&nbsp;</td>
@@ -111,7 +99,7 @@
 			<p> Looks like something data is incorrect </p>
 			</div> -->
 		</div>
-		<div class="TopLB">
+		<div class="vSpace">
 		</div>
 	   <footer><a href="#"><span class="copyright">© 2017 Our Company Name </span></a> &nbsp;|&nbsp; <a href="#">Terms of Use</a> &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="file:///D:/about">About</a> &nbsp;|&nbsp; <a href="#">Contact</a>
 	   </footer>
