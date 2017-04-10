@@ -18,7 +18,10 @@
 	git push heroku master
 	heroku ps:scale web=1
 	heroku open
-	#heroku logs --tail
+	
+	SCRIPTPATH=$(dirname "$SCRIPT")
+	echo "Writing logs in " + "$SCRIPTPATH" + "/logs/herokuLogs.txt"
+	heroku logs --tail >> "$SCRIPTPATH" + "/logs/herokuLogs.txt"
 	
 	echo "Exiting script"
     exit 1

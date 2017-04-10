@@ -2,4 +2,5 @@
 [Tt]humbs.db
 *.DS_Store
 desktop.ini
-
+logs
+hclftp
