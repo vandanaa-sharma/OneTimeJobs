@@ -65,7 +65,7 @@ footer a:hover	{ color: #FFF9C4; }
 @media only screen and (max-width: 768px)
 {
 	header 	{ height:40px; box-shadow: none; }
-	header a.search_jobs 	{ width: 30px; height: 30px; border-radius: 3px; background-size: 30px 35px; margin: 3px 0 3px 0;}
+	header a.search_jobs 	{ width: 30px; height: 30px; border-radius: 3px; background-size: 30px 35px; margin: 2px 0 3px 0;}
 	header a.home 	{ width: 60px; height: 40px; background: url(/our_logo_mobile.png)no-repeat; background-size: 60px 40px; margin: 0 0 0 0; }
 	header #content 	{ max-width: 100%; text-align: left; padding: 0px 0px; margin: auto; }
 	header form				{ width: 200px; margin: 0 2px 0 0;}
