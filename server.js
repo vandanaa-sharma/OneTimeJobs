@@ -16,7 +16,7 @@
 	var url = "mongodb://onetimeobs:otjmongo123@ds153730.mlab.com:53730/heroku_rdxczr3";  //process.env.MONGOLAB_URI;
 	
 	/** Use url to connect to database **/
-	mongoClient.connect(url, {uri_decode_auth: true}, function(error, db)
+	mongoClient.connect(url, function(error, db)
 	{
 		assert.equal(null, error);
 		_serverLog("Correctly connected to database server");
