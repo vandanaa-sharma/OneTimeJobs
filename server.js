@@ -8,8 +8,12 @@
 	var mongoClient = require('mongodb').MongoClient;
 	var assert = require('assert');
 	
-	/** URL of the local database **/
-	var url = 'mongodb://localhost:27017/test';
+	/** URL for the local database - mongodb://localhost:27017/test**/
+	/** URL for heroku - mongodb://<dbuser>:<dbpassword>@ds153730.mlab.com:number/database_name **/
+	/** Use Commands - SET MONGOLAB_URI=url (for Local database )
+	heroku config:set --app AppName url (heroku)
+	**/
+	var url = process.env.MONGOLAB_URI;
 	
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)
@@ -41,7 +45,7 @@
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
-		response.sendFile(__dirname + "/" + "form.html" );
+		response.sendFile(__dirname + "/public/" + "form.html"ss );
 	});	
 	app.get('/form.html', function(request,response)
 	{
