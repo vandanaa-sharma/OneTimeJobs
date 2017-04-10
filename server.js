@@ -45,7 +45,7 @@
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
-		response.sendFile(__dirname + "/public/" + "form.html"ss );
+		response.sendFile(__dirname + "/public/" + "form.html" );
 	});	
 	app.get('/form.html', function(request,response)
 	{
