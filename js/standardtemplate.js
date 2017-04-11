@@ -20,9 +20,9 @@ $(document).ready(function()
 	headContent += "		<!-- Here rel means \"relationship\" this document has to the document being linked -->";
 	headContent += "		<!-- href stands for hypertext reference -->";
 	headContent += "		<link rel=\"stylesheet\" href=\"\/style.css\" type=\"text\/css\" >";
-	headContent += "		<!-- Set icons -->";
+	headContent += "		<!-- Set icons (Only .ico files)-->";
 	headContent += "		<link rel=\"icon\" href=\"\/our_logo_mobile.ico\">";
-	headContent += "		<link rel=\"shortcut icon\" href=\"\/our_logo_mobile.png\">";
+	headContent += "		<link rel=\"shortcut icon\" href=\"\/our_logo_mobile.ico\">";
 
 	$("#head").html(headContent);
 
