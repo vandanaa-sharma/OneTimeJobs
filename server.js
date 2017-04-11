@@ -45,10 +45,10 @@
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
-		response.sendFile(__dirname + "/public/" + "form.html" );
+		response.sendFile(__dirname + "/public/" + "index.html" );
 	});	
-	app.get('/form.html', function(request,response)
-	{
+	app.get('/register.html', function(request,response)
+	{ssss
 		_serverLog("Request received for registration");
 		response.sendFile(__dirname + "/public/" + "form.html" );
 	});

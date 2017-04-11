@@ -23,7 +23,7 @@ $(document).ready(function()
 	headContent += "		<link rel=\"icon\" href=\"\/our_logo_mobile.png\">";
 	headContent += "		<link rel=\"shortcut icon\" href=\"\/our_logo_mobile.png\">";
 
-	$("head").html(headContent);
+	$("#head").html(headContent);
 
 	/** HEADER **/
 	var header = "";
