@@ -16,11 +16,12 @@ $(document).ready(function()
 	headContent += "		<!-- Make your page mobile friendly -->		";
 	headContent += "		<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
 	headContent += "		<meta charset=\"ISO-8859-1\">";
+	headContent += "		<meta name=\"theme-color\" content=\"#0088FF\"/>"
 	headContent += "		<!-- Here rel means \"relationship\" this document has to the document being linked -->";
 	headContent += "		<!-- href stands for hypertext reference -->";
 	headContent += "		<link rel=\"stylesheet\" href=\"\/style.css\" type=\"text\/css\" >";
 	headContent += "		<!-- Set icons -->";
-	headContent += "		<link rel=\"icon\" href=\"\/our_logo_mobile.png\">";
+	headContent += "		<link rel=\"icon\" href=\"\/our_logo_mobile.ico\">";
 	headContent += "		<link rel=\"shortcut icon\" href=\"\/our_logo_mobile.png\">";
 
 	$("#head").html(headContent);

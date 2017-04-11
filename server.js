@@ -50,12 +50,12 @@
 	app.get('/register.html', function(request,response)
 	{ssss
 		_serverLog("Request received for registration");
-		response.sendFile(__dirname + "/public/" + "form.html" );
+		response.sendFile(__dirname + "/public/" + "register.html" );
 	});
 	app.post('/post_form', urlencodedParser, function(request,response)
 	{
 		_serverLog("New request user received");
-		response.sendFile(__dirname + "/public/" + "registration_successful.html");
+		response.sendFile(__dirname + "/public/" + "registration-successful.html");
 		user = 
 		{
 			name : request.body.name,
