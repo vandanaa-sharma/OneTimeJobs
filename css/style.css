@@ -54,7 +54,7 @@ footer a:hover	{ color: #FFF9C4; }
 .slicknav_menu .slicknav_icon-bar	{ display: block; width: 20px; height: 2px; background-color: #FFF; border-radius: 1px; }
 .slicknav_menu:before { content: " "; display: table; }
 .slicknav_menu:after { content: " "; display: table; clear: both; }
-.slicknav_nav { z-index: 0; float: right; position: fixed; top: 50px; box-sizing: border-box; width: 100%; background-color: #004D40; padding: 0; margin: 0 0 0 -5px; overflow: hidden; }
+.slicknav_nav { z-index: 0; float: right; position: fixed; top: 50px; width: 100%; background-color: #004D40; padding: 0; margin: 0 0 0 -5px; overflow: hidden; }
 .slicknav_nav a, .slicknav_nav ul, .slicknav_nav li { display: block; }
 .slicknav_nav a { font-size: 18px; color: #fafafa; text-decoration: none; padding: 9px 2px 10px 2px; }
 .slicknav_nav a:hover { color: #FFF176; background-color: rgba(0, 50, 40, 0.5); }
@@ -75,28 +75,22 @@ footer a:hover	{ color: #FFF9C4; }
 	.hSpace			{ display:none;}
 	#menu 	{ display: none; }
 	.slicknav_menu { display: block; margin-bottom: -50px; }
-	
-
 }
 
 /** ----------------  Standard template ends here -----------------**/
 
 
 
-
-
-
 h2				{ font-size: 30px; font-weight: 600; margin: 25px 0;}
+form#registration.formTable 	{ margin: 10px 20px 10px 20px; text-align: left; max-width: 800px; padding: 10px 0 0 5px; } 
+input				{ display: inline-block; width: 250px; height: 26px; font-size: 18px; color: #004D40; background: #F9F9F9; padding: 0 0 0 5px; border: none; border-radius: 5px; margin: auto; border: 1px solid #A9A9A9;}
 #main 			{ max-width: 100%; min-height: 380px; width: 38%; background: #FFF; text-align: center; padding: 15px 0; border: 1px solid #459DFF; border-radius: 3px; box-shadow: 0px 1px 1px #C8C8C8; margin: 0 auto 20px auto; overflow: hidden; }
 
-/* Added by Vandana */
 
 .vSpace			 { display: block; height: 50px;}
 .submitButton	 { width: 100px; height: 38px; color: #fff; font-size: 18px; font-weight: bold; text-align: center; background:  #1E88E5;  background-image: linear-gradient(#2196F3, #1E88E5); border: 1px solid #1976D2; border-radius: 5px; margin-right: 10px; margin-bottom: 10px; padding: 6px 0 6px 0;}
 .submitButton:hover			{ color: #FFF; background: #1976D2; background-image: linear-gradient(#1E88E5, #1976D2); border-color: #01579B; }
 .submitButton:active 		{ color: #FFF; background: #1565C0; background-image: linear-gradient(#1976D2, #1565C0); border-color: #0D47A1; }
-form#registration.formTable 	{ margin: 10px 20px 10px 20px; text-align: left; max-width: 800px; padding: 10px 0 0 5px; } 
-input				{ display: inline-block; width: 250px; height: 26px; font-size: 18px; color: #004D40; background: #F9F9F9; padding: 0 0 0 5px; border: none; border-radius: 5px; margin: auto; }
 .cb 			{ width: 16px; height: 16px; margin: 5px;}
 
 

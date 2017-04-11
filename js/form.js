@@ -10,3 +10,4 @@ function _showError(data)
 	element.style.display = 'block';
 	return false;
 }
+
