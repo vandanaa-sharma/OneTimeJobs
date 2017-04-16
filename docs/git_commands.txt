@@ -8,7 +8,6 @@ $git pull (remoteName) branchName (default branch - master)
 $git remote show (remoteName) 
 
 
-
 Create a branch - (Be on the branch you wish to checkout from)
 
 $ git checkout -b newBranchName
@@ -32,7 +31,6 @@ Changing remote url -
 git remote set-url remotename "url"
 
 
-
 Use tagging to mark a significant change set like a release -
 
 $git tag 1.0.0 <commitID>
@@ -40,6 +38,9 @@ CommitId is the leading characters of the changeset ID, up to 10, but must be un
 $git log
 
 
-To revert all local changes
 
-git reset --hard remoteName/branchName
+CAUTION - Use extremely carefully
+Force push - 
+	git push -f remoteName branchName
+Hard clone - (will revert all local changes)
+	git reset --hard remoteName/branchName

@@ -20,12 +20,12 @@ a:hover			{ color: #0288D1; text-decoration: none; }
 
 header					{ z-index: 1; position: fixed; width: 100%; height: 50px; opacity: 0.97; background: #0088FF; background-image: linear-gradient(#006CFF, #0088FF); box-shadow: 0px 1px 2px #00B3FF; }
 header #content			{ max-width: 100%; text-align: left; padding: 0px 10px; margin: auto; }
-header a.home			{ display: inline-block; width: 100px; height: 40px; background: url(/our_logo.png) no-repeat; background-size: 100px 40px; margin: 5px 5px 5px 5px; }
-header a.search_jobs			{ position: relative; display: inline-block; width: 30px; height: 30px; background: #FFF url(/search_button.png) no-repeat; border-radius: 5px; background-size: 30px 30px; margin: 8px 0 12px 0;}
+header a.home			{ display: inline-block; width: 100px; height: 40px; background: url(/images/our_logo.png) no-repeat; background-size: 100px 40px; margin: 5px 5px 5px 5px; }
+header a.search_jobs			{ position: relative; display: inline-block; width: 30px; height: 30px; background: #FFF url(/images/search_button.png) no-repeat; border-radius: 5px; background-size: 30px 30px; margin: 8px 0 12px 0;}
 header a.search_jobs:hover	{ box-shadow: 0 0 3px #FFF; }
 header form				{ display: inline-block; width: 380px; vertical-align: top; margin: 0 5px 0 0; overflow: hidden; }
 header form #swrap		{ display: inline-block; width: 270px; white-space: nowrap; }
-header form #search	{ display: inline-block; float: right; position: relative; top: 12px; left: -48px; white-space: nowrap; margin-right: -185px; }
+header form #search	{ display: inline-block; position: relative; top: 12px; left: -48px; white-space: nowrap; margin-right: -185px; }
 header form #term		{ display: inline-block; width: 380px; height: 30px; font-size: 18px; color: #004D40; background: #F9F9F9; padding: 2px 8px; border: none; border-radius: 5px; margin: 8px 0 8px 0; }
 header form #term:focus	{ outline: none; background: #FFFDE7; box-shadow: 0 0 2px #FFFDE7; }
 
@@ -66,7 +66,7 @@ footer a:hover	{ color: #FFF9C4; }
 {
 	header 	{ height:40px; box-shadow: none; }
 	header a.search_jobs 	{ width: 30px; height: 30px; border-radius: 3px; background-size: 30px 35px; margin: 0px 0 5px 0;}
-	header a.home 	{ width: 60px; height: 40px; background: url(/our_logo_mobile.png)no-repeat; background-size: 60px 40px; margin: 0 0 0 0; }
+	header a.home 	{ width: 60px; height: 40px; background: url(/images/our_logo_mobile.png)no-repeat; background-size: 60px 40px; margin: 0 0 0 0; }
 	header #content 	{ max-width: 100%; text-align: left; padding: 0px 0px; margin: auto; }
 	header form				{ width: 200px; margin: 0 2px 0 0;}
 	header form #term		{ width: 200px; height: 30px; font-size: 12px; padding: 2px 5px; border-radius: 3px; margin: 4px 0 4px 0; }
