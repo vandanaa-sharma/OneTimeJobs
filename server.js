@@ -1,3 +1,6 @@
+	
+	/** Requirements **/
+	
 	var express = require('express');
 	var app = express();
 	var parser = require('body-parser');
@@ -7,13 +10,18 @@
 	/** Use mongodb database **/
 	var mongoClient = require('mongodb').MongoClient;
 	var assert = require('assert');
+	/** Use passport for authentication */
+	var passport = require('passport');
+	
+	
+/** ========================================== MONGODB - Database ================================================= **/
 	
 	/** URL for the local database - mongodb://localhost:27017/test**/
 	/** URL for heroku - mongodb://<dbuser>:<dbpassword>@dsxxxxx.mlab.com:xxxxx/database_name **/
 	/** Use Commands - SET MONGOLAB_URI=url (for Local database )
 	heroku config:set --app AppName MONGOLAB_URI=url (heroku)
 	**/
-	var url = process.env.MONGOLAB_URI;
+	var url = process.env.MONGOLAB_URI || "mongodb://localhost:27017/test";
 	
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)
@@ -29,36 +37,58 @@
 
 		if(error)
 		{
+			_serverLog(error.stack);			
 			_serverLog("Database could not initialised, please try again later");
 			return;
 		}
 		//db.close();
 	});
 	
+/** ============================================================================================================== **/
+	
+	
+	
+/** ========================================== EXPRESS ================================================= **/
+	
 	/** Using express.static middleware - express,static is built-in middleware **/
-	app.use(express.static(__dirname + '/public'));   /** Images **/	
-	/** This loads the javascript and css files in the html form **/
-	app.use(express.static(__dirname + '/css'));
-	app.use(express.static(__dirname + '/js'));
-	app.use(express.static(__dirname + '/logs'));
+	/** This loads images, javascript and css files on the browser **/
+	app.use(express.static(__dirname + '/public'));   
+	//app.use(express.static(__dirname + '/logs'));			// Not being used now
+
+	/** Passport for authentication **/
+	app.use(passport.initialize());
+	app.use(passport.session());				// To support persistent sessions 
+
+	/** Express security - disable "x-powered-by" header*/
+	/** TODO - use helmetss */
+	app.disable('x-powered-by')
 	
 	app.get('/', function(request,response)
 	{
 		_serverLog("Request received for homepage " + Date.now());
-		response.sendFile(__dirname + "/public/" + "index.html" );
+		response.sendFile(__dirname + "/public/html/" + "index.html" );
 	});	
-	app.get('/register.html', function(request,response)
-	{ssss
+	
+	app.get('/signup', function(request,response)
+	{
 		_serverLog("Request received for registration");
-		response.sendFile(__dirname + "/public/" + "register.html" );
+		response.sendFile(__dirname + "/public/html/" + "signup.html" );
 	});
-	app.post('/post_form', urlencodedParser, function(request,response)
+	
+	app.get('/wiki', function(request,response)
+	{
+		_serverLog("Request received for homepage " + Date.now());
+		response.sendFile(__dirname + "/public/html/" + "wiki.html" );
+	});	
+	
+	app.post('/registration-succesful', urlencodedParser, function(request,response)
 	{
 		_serverLog("New request user received");
-		response.sendFile(__dirname + "/public/" + "registration-successful.html");
+		response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
 		user = 
 		{
 			name : request.body.name,
+			username : request.body.username,
 			gender : request.body.gender,
 			recruiter : request.body.recruiter,
 			jobseeker : request.body.job_seeker,
@@ -83,6 +113,7 @@
 		}
 		catch(error)
 		{
+			_serverLog(error.stack);
 			_serverLog("FATAL - Something went wrong, user not added");
 			/** TODO - Revert the user to the registration page with flash error **/
 		}
@@ -104,8 +135,8 @@
 	});
 	
 	/** For admins only - list of all users **/
-	/** TODO- add admin authentication to this page **/
-	app.get('/users.html', function(request,response)
+	/** TODO - add admin authentication to this page **/
+	app.get('/users', function(request,response)
 	{
 		_serverLog("Request received for users list");
 		mydb.collection('users').find({}).toArray(function(error, data)
@@ -117,6 +148,19 @@
 		});
 		//db.getCollection('users').find().forEach("do something"); 
 	});	
+
+	/** Authentication using middleware - passport **/
+	/** TODO - handle success redirect **/
+	app.post("/login",  passport.authenticate('local', { successRedirect : '/',				
+														 failureRedirect : '/login',
+														 failureFlash : 'Invalid username or password',
+														 successFlash : 'Login successful'}));
+	
+	
+/** ======================================================================================================================= **/
+
+
+/** ========================================== PORT ================================================= **/
 	
 	/** Port correction made for heroku **/
 	const PORT = process.env.PORT || 8080;
@@ -124,16 +168,22 @@
 		var port = server.address().port
 		console.log('App is running, server is listening on port ', port);
 	});
-	
-	function _serverLog(data)
+
+/** =================================================================================================================== **/
+
+
+/** ============================================= LOGGER =============================================================== **/
+	function _serverLog(message)
 	{
-		console.log(data);
+		console.log(message);
 		var date = new Date();
 		var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
-		data = data + "  " + timeStamp + "\r\n";
+		message = message + "  " + timeStamp + "\r\n";
 		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-		fileSystem.appendFile(__dirname + '/logs/server_log.txt', data, 'utf-8', {'flags': 'a+'}, function (error) 
+		fileSystem.appendFile(__dirname + '/logs/server_log.txt', message, 'utf-8', {'flags': 'a+'}, function (error) 
 		{
-			// Do nothing
+			// Do nothingss
 		});
 	}
+	
+/** ==================================================================================================================== **/

@@ -19,7 +19,7 @@ $(document).ready(function()
 	headContent += "		<meta name=\"theme-color\" content=\"#0088FF\"/>"
 	headContent += "		<!-- Here rel means \"relationship\" this document has to the document being linked -->";
 	headContent += "		<!-- href stands for hypertext reference -->";
-	headContent += "		<link rel=\"stylesheet\" href=\"\/style.css\" type=\"text\/css\" >";
+	headContent += "		<link rel=\"stylesheet\" href=\"\/stylesheets\/style.css\" type=\"text\/css\" >";
 	headContent += "		<!-- Set icons (Only .ico files)-->";
 	headContent += "		<link rel=\"icon\" href=\"\/our_logo_mobile.ico\">";
 	headContent += "		<link rel=\"shortcut icon\" href=\"\/our_logo_mobile.ico\">";
@@ -72,7 +72,7 @@ $(document).ready(function()
 	var footer ="";
 	footer += "<footer>";
 	footer += "		  <a href=\"#\">";
-	footer += "		  	<span class=\"copyright\">© 2017 Our Company Name <\/span>";
+	footer += "		  	<span class=\"copyright\">ï¿½ 2017 Our Company Name <\/span>";
 	footer += "		  <\/a> &nbsp;|&nbsp; ";
 	footer += "		  <a href=\"#\">Terms of Use<\/a> &nbsp;|&nbsp; ";
 	footer += "		  <a href=\"#\">Privacy Policy<\/a> &nbsp;|&nbsp; ";
