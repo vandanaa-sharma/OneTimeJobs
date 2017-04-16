@@ -1,0 +1,8 @@
+NodeJS frequently used commands - 
+
+- npm insall --save packageName (add new dependency module)
+- node server.js/npm start - reads the start script from package.json
+- Ctrl + C (end command/shut own app)
+- npm init (initialies module - creates package.json, used only once for an app - done for current app)
+- npm install (installs all dependencies mentioned in package.json)
+- npm ls (lists all installed modules)

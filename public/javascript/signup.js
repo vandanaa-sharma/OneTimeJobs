@@ -10,8 +10,6 @@ window.onload = function() {
 
   var geoSuccess = function(position) {
     startPos = position;
-    document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-    document.getElementById('startLon').innerHTML = startPos.coords.longitude;
   };
   var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);

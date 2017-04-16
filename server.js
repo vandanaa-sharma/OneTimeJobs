@@ -2,7 +2,6 @@
 	/** Requirements **/
 	
 	var express = require('express');
-	var app = express();
 	var parser = require('body-parser');
 	var fileSystem = require('fs');
 	/** body-parser is a module that let's you iterate over the html document tree to read response especially in case of input fields **/
@@ -12,7 +11,8 @@
 	var assert = require('assert');
 	/** Use passport for authentication */
 	var passport = require('passport');
-	
+	/** Read deplyment based configuration settings **/
+	var config = require('./config')();			// './' is used here because it is a local module
 	
 /** ========================================== MONGODB - Database ================================================= **/
 	
@@ -21,7 +21,7 @@
 	/** Use Commands - SET MONGOLAB_URI=url (for Local database )
 	heroku config:set --app AppName MONGOLAB_URI=url (heroku)
 	**/
-	var url = process.env.MONGOLAB_URI || "mongodb://localhost:27017/test";
+	var url = process.env.MONGOLAB_URI || config.database;
 	
 	/** Use url to connect to database **/
 	mongoClient.connect(url, function(error, db)
@@ -50,6 +50,7 @@
 	
 /** ========================================== EXPRESS ================================================= **/
 	
+	var app = express();
 	/** Using express.static middleware - express,static is built-in middleware **/
 	/** This loads images, javascript and css files on the browser **/
 	app.use(express.static(__dirname + '/public'));   
@@ -162,8 +163,8 @@
 
 /** ========================================== PORT ================================================= **/
 	
-	/** Port correction made for heroku **/
-	const PORT = process.env.PORT || 8080;
+	/** process.env.PORT - Port correction made for heroku **/
+	const PORT = process.env.PORT || config.port;
 	var server = app.listen(PORT, function() {
 		var port = server.address().port
 		console.log('App is running, server is listening on port ', port);
@@ -182,7 +183,7 @@
 		/** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
 		fileSystem.appendFile(__dirname + '/logs/server_log.txt', message, 'utf-8', {'flags': 'a+'}, function (error) 
 		{
-			// Do nothingss
+			// Do nothings
 		});
 	}
 	

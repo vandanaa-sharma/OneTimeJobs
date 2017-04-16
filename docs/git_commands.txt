@@ -1,6 +1,6 @@
+Frequently used git commands - 
 
 Intialise Git repository -
-
 $git init
 $git add .
 $git remote add (remoteName) (githuburl)
@@ -11,32 +11,28 @@ $git remote show (remoteName)
 Create a branch - (Be on the branch you wish to checkout from)
 
 $ git checkout -b newBranchName
-$ git push remoteName newBranchNames
+$ git push remoteName newBranchName
 $ git branch 				      (to check created branches)
 $ git fetch remoteName branchName 	      (update from serverbranch)
 $ git status   				      (Check changes to commit)
 $ git commit -m commitName                    (Commit your local changes)
 $ git push remoteName branchName
 
+Switch to existing branch - 
+$ git checkout branchName
 
 Delete a branch -
-
 Remote - $ git push origin --delete <branch_name>
 Local - $ git branch -d <branch_name>
 
-
-
 Changing remote url - 
-
 git remote set-url remotename "url"
 
 
 Use tagging to mark a significant change set like a release -
-
 $git tag 1.0.0 <commitID>
 CommitId is the leading characters of the changeset ID, up to 10, but must be unique. Get the ID using:	
 $git log
-
 
 
 CAUTION - Use extremely carefully
