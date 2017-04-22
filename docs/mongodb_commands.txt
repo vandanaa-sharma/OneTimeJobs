@@ -4,7 +4,7 @@ MongoDb Basic Commands -
 - Download link -
 - Add path upto bin (where all exes are present) to PATH environment variable
 - Set database path - mongod --storageEngine=mmapv1 --dbpath "D:\OneTimeJobs\server\database" 
-- Run : mongod --storageEngine=mmapv1 --dbpath "D:\OneTimeJobs\localhost\database" ( This will intialize the database and keep it active)
+- Run : mongod --storageEngine=mmapv1 --dbpath "D:\OneTimeJobs\server\database" ( This will intialize the database and keep it active)
 - Open another comand prompt
 - Run : mongo
       : db.test.save({a:1}) (test object)
@@ -15,4 +15,4 @@ MongoDb Basic Commands -
                   : db.dropDatabase() (To drop existing database)
 
 
-Please note that these two command prompts should be running when you run - node server.js
+Please note that these two command prompts (Windows) should be running when you run - node server.js

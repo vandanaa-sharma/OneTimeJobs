@@ -1,0 +1,43 @@
+
+
+:root {
+
+   /* Standard template - header and footer background **/
+  --primary-color-dark: #387B8B;
+  --primary-color: #009BA6;
+  --primary-color-s1: #83CCD1;
+  --primary-color-s2:#70C5CA;
+  --primary-color-s3: #9EDBDB;
+
+   /** Standard template - link/menu items color **/
+  --accent-color: #FFFFFF;
+
+  --search-button-background: #FFFFFF;
+  --search-button-background-hover: #FFFFFF;
+
+  --search-text-color: #387B8B;
+  --search-box-shadow-hover: #FFFDE7;
+  --search-box-background-hover:#387B8B; 
+
+  /** Buttons and elements to highlight **/
+  --secondary-color-dark: #FF4300;
+  --secondary-color: #F1831D;
+  --secondary-color-s1: #F39742;
+  --secondary-color-s2: #F5A962;
+  --secondary-color-s3: #F8C391;
+
+/* General/Universal attributes color - these values are overwritten in most cases **/
+    /** Links **/
+  --link-color: #039BE5;
+  --link-color-hover: #0288D1;
+
+    /** Body **/
+  --body-text-color: #797979;
+  --body-background-color: #EAECEB;
+
+  /** Input/ Edit boxes**/
+  --input-text-color: #474747 ;
+  --input-box-border: #A9A9A9;
+  --input-box-background:#F9F9F9 ;
+
+}

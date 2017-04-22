@@ -82,7 +82,7 @@
 		response.sendFile(__dirname + "/public/html/" + "wiki.html" );
 	});	
 	
-	app.post('/registration-succesful', urlencodedParser, function(request,response)
+	app.post('/registration-successful', urlencodedParser, function(request,response)
 	{
 		_serverLog("New request user received");
 		response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
