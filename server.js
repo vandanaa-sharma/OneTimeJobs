@@ -20,6 +20,8 @@
 	var session = require('express-session');
 	var flash = require('connect-flash');		// used for flash messages during authentication
 	var cookieParser = require('cookie-parser');
+	/** Render elements using pug/jade*/
+	var pug = require('pug');
 
 /** ========================================== MONGODB - Database ================================================= **/
 
@@ -75,6 +77,11 @@
 	app.use(flash());
 	app.use(cookieParser());
 
+	/** Set view engine */
+	app.set('views', __dirname +"\\views");
+	app.set('view engine', 'pug');
+
+	/** Handle errors */
 	app.use(function(err, req, res, next) {
     	console.log(err);
 	});

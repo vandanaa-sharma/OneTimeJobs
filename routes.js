@@ -13,7 +13,8 @@
         app.get('/', function(request,response)
         {
             _serverLog("Request received for homepage " + Date.now());
-            response.sendFile(__dirname + "/public/html/" + "index.html" );
+            response.render('index');
+            //response.sendFile(__dirname + "/public/html/" + "index.html" );
         });	
         
         app.get('/signup', function(request,response)
@@ -117,11 +118,28 @@
             response.sendFile(__dirname + "/public/html/" + "signin.html" );
         });	
 
+        /** Temporary sign in  */
+        app.post("/signin", urlencodedParser, function (request, response)
+        {
+          var collection = mydb.collection('users');		
+          var qemail = request.body.email;
+          collection.findOne({"email": qemail}, function(err, user) {
+              if(err) 
+              {
+                /* TODO - reload log in page with error message */
+              }
+              else
+              {
+                  response.send(user);
+              }
+          });
+        });
+
         /** Authentication using middleware - passport **/
         /** TODO - handle success redirect **/
-        app.post("/login",  passport.authenticate('signin', { successRedirect : '/',				
-                                                              failureRedirect : '/signin',
-                                                              failureFlash : 'Invalid username or password'}));
+        // app.post("/login",  passport.authenticate('signin', { successRedirect : '/',				
+        //                                                       failureRedirect : '/signin',
+        //                                                       failureFlash : 'Invalid username or password'}));
                              
     }
 

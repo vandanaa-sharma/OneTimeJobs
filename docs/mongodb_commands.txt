@@ -16,3 +16,4 @@ MongoDb Basic Commands -
 
 
 Please note that these two command prompts (Windows) should be running when you run - node server.js
+Do not run mongo commands in UNIX shell
