@@ -4,5 +4,10 @@
 desktop.ini
 logs
 hclftp
+
+#Project untracked files
 database
 node_modules
+logs
+tools
+others

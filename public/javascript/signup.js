@@ -13,7 +13,7 @@ window.onload = function() {
   };
   var geoError = function(error) {
     console.log('Error occurred. Error code: ' + error.code);
-    // error.code can be:
+    //   Error.code can be:
     //   0: unknown error
     //   1: permission denied
     //   2: position unavailable (error response from location provider)
@@ -22,15 +22,18 @@ window.onload = function() {
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 };
 
-function validateForm()
+$(document).ready(function()
 {
-	/** TODO - Validate all input fields **/
-	 console.log("Validate form called");
-}
-function _showError(data)
-{
-	/** Display error div **/
-	var element = document.getElementByID('error');
-	element.style.display = 'block';
-	return false;
-}
+    var password = document.getElementById('password');
+    var cpassword = document.getElementById('confirmpassword');
+    var checkPasswordValidity = function() {
+      if (password.value != cpassword.value || password.length < 6) {
+        password.setCustomValidity('Passwords must be at least 6 characters and must match.');
+      } 
+      else {
+        password.setCustomValidity('');
+      }        
+    };
+    password.addEventListener('change', checkPasswordValidity, false);
+    cpassword.addEventListener('change', checkPasswordValidity, false);
+});
