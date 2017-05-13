@@ -15,6 +15,7 @@ module.exports = mongoose.model('User', {
     recruiter : Number,
     jobseeker : Number,
     age : Number,
+    contactnumber: Number,
     password : String,
     location : String,
     address: String

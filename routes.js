@@ -29,73 +29,74 @@
             response.sendFile(__dirname + "/public/html/" + "wiki.html" );
         });	
         
-        app.post('/signup',passport.authenticate('signup', { successRedirect : '/registration-successful',				
-                                                             failureRedirect : '/signup',
-                                                             failureFlash : 'Invalid username or password'}));
+        // app.post('/signup',passport.authenticate('signup', { successRedirect : '/registration-successful',				
+        //                                                      failureRedirect : '/signup',
+        //                                                      failureFlash : 'Invalid username or password'}));
 
-        // app.post('/signup', urlencodedParser, function(request,response)
-        // {		
-        //     _serverLog("New request user received");
-        //     /** Check if email already exists in database */
-        //     var exists = mydb.collection('users').find({ email: request.body.email }).user;
-        //     if(exists)
-        //     {
-        //         _serverLog("User exists in database");
-        //         response.sendFile(__dirname + "/public/html/" + "signup.html");
-        //         return;
-        //     }
+        app.post('/signup', urlencodedParser, function(request,response)
+        {		
+            _serverLog("New request user received");
+            /** Check if email already exists in database */
+            var exists = mydb.collection('users').find({ email: request.body.email }).user;
+            if(exists)
+            {
+                _serverLog("User exists in database");
+                response.sendFile(__dirname + "/public/html/" + "signup.html");
+                return;
+            }
 
-        //     var user = 
-        //     {
-        //         name : request.body.name,
-        //         username : request.body.username,
-        //         email : request.body.email,
-        //         gender : request.body.gender,
-        //         recruiter : request.body.recruiter,
-        //         jobseeker : request.body.job_seeker,
-        //         age : request.body.age,
-        //         password : request.body.password,
-        //         location : request.body.location,
-        //         address: request.body.address
-        //     }
+            var user = 
+            {
+                name : request.body.name,
+                username : request.body.username,
+                email : request.body.email,
+                gender : request.body.gender,
+                recruiter : request.body.recruiter,
+                jobseeker : request.body.job_seeker,
+                age : request.body.age,
+                contactnumber: request.body.contactnumber,
+                password : request.body.password,
+                location : request.body.location,
+                address: request.body.address
+            }
             
-        //     _serverLog(JSON.stringify(user));
+            _serverLog(JSON.stringify(user));
 
-        //     /** Add user to database **/	
-        //     try
-        //     {
-        //         collection.insert(user, function(error, data)
-        //         {
-        //             if(error)
-        //                 _serverLog("FATAL - Something went wrong, user not added");
-        //             else
-        //                 _serverLog("User added to database successfully");
-        //         });
-        //         response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
-        //     }
-        //     catch(error)
-        //     {
-        //         _serverLog(error.stack);
-        //         _serverLog("FATAL - Something went wrong, user not added");
-        //         /** TODO - Revert the user to the registration page with flash error **/
-        //     }
+            /** Add user to database **/	
+            try
+            {
+                mydb.collection('users').insert(user, function(error, data)
+                {
+                    if(error)
+                        _serverLog("FATAL - Something went wrong, user not added");
+                    else
+                        _serverLog("User added to database successfully");
+                });
+                response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
+            }
+            catch(error)
+            {
+                _serverLog(error.stack);
+                _serverLog("FATAL - Something went wrong, user not added");
+                /** TODO - Revert the user to the registration page with flash error **/
+            }
             
-        //     //response.end(JSON.stringify(user)); /** send json to browser **/
+            //response.end(JSON.stringify(user)); /** send json to browser **/
             
-        //     // /** For newline use - "\r\n" in JavaScript **/
-        //     // user = JSON.stringify(user);
-        //     // /** Note that you are using "fileSytem.appendFile" instead of "writeFile" here to prevent overwriting **/
-        //     // user += "     |     ";
+            // /** For newline use - "\r\n" in JavaScript **/
+            // user = JSON.stringify(user);
+            // /** Note that you are using "fileSytem.appendFile" instead of "writeFile" here to prevent overwriting **/
+            // user += "     |     ";
             
-        //     // /** Temporary session wise heroku logs **/
-        //     // fileSystem.appendFile(__dirname + '/logs/users.txt', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
-        //     // {
-        //     //     if(error)
-        //     //         _serverLog(error.stack);
-        //     //     else
-        //     //         ; //_serverLog("User added to database");
-        //     // });
-        // });
+            // /** Temporary session wise heroku logs **/
+            // fileSystem.appendFile(__dirname + '/logs/users.txt', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
+            // {
+            //     if(error)
+            //         _serverLog(error.stack);
+            //     else
+            //         ; //_serverLog("User added to database");
+            // });
+        });
         
         /** For admins only - list of all users **/
         /** TODO - add admin authentication to this page **/
@@ -130,7 +131,7 @@
               }
               else
               {
-                  response.send(user);
+                  response.render('index', { user: user});
               }
           });
         });
