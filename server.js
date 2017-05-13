@@ -78,7 +78,7 @@
 	app.use(cookieParser());
 
 	/** Set view engine */
-	app.set('views', __dirname +"\\views");
+	app.set('views', __dirname +"/views");
 	app.set('view engine', 'pug');
 
 	/** Handle errors */
