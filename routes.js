@@ -8,13 +8,16 @@
     var urlencodedParser = parser.urlencoded({extended : false});
     var cookieParser = require('cookie-parser');
 
+    /** Temporary session validator */
+    var signedin = 0;
+    var sessionuser="";
+
     var routes = function (app, passport, mydb)
     {
         app.get('/', function(request,response)
         {
             _serverLog("Request received for homepage " + Date.now());
-            response.render('index');
-            //response.sendFile(__dirname + "/public/html/" + "index.html" );
+            response.sendFile(__dirname + "/public/html/" + "index.html" );
         });	
         
         app.get('/signup', function(request,response)
@@ -122,18 +125,31 @@
         /** Temporary sign in  */
         app.post("/signin", urlencodedParser, function (request, response)
         {
-          var collection = mydb.collection('users');		
-          var qemail = request.body.email;
-          collection.findOne({"email": qemail}, function(err, user) {
-              if(err) 
+             response.redirect('/profiles/' + request.body.username)      
+        });
+
+        app.get('/profiles/:username', urlencodedParser, function (request, response)
+        {
+          // ,{"password": request.query['password']}
+          mydb.collection('users').findOne( {$and:[{"username": request.params.username}]}, function(err, user)
+          {
+              if(err || !user) 
               {
                 /* TODO - reload log in page with error message */
+                response.sendFile(__dirname + "/public/html/" + "signin.html" );
               }
-              else
+              else if(user)
               {
-                  response.render('index', { user: user});
+                 response.render('index', { user: user});
               }
           });
+        });
+          
+ 
+        app.get('/signout', function(request,response) 
+        {
+            /** TODO  */
+            response.sendFile(__dirname + "/public/html/" + "signin.html" );
         });
 
         /** Authentication using middleware - passport **/
