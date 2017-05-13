@@ -78,6 +78,7 @@
 	app.use(cookieParser());
 
 	/** Set view engine */
+	//Path is \\views for local server and /views for heroku
 	app.set('views', __dirname +"/views");
 	app.set('view engine', 'pug');
 
