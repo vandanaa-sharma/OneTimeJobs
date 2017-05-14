@@ -24,7 +24,10 @@
         {
             if(request.session.passport != undefined)
                 if(request.session.passport.user)
-                     response.send("You are signed in. Log out to register another user");
+                {
+                    response.send("You are signed in. Log out to register another user");
+                    return;
+                }              
             _serverLog("Request received for sign up "+ Date.now());
             response.sendFile(__dirname + "/public/html/" + "signup.html" );
         });
