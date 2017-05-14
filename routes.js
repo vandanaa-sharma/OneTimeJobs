@@ -37,10 +37,6 @@
             _serverLog("Request received for wiki " + Date.now());
             response.sendFile(__dirname + "/public/html/" + "wiki.html" );
         });	
-        
-        // app.post('/signup',passport.authenticate('signup', { successRedirect : '/registration-successful',				
-        //                                                      failureRedirect : '/signup',
-        //                                                      failureFlash : 'Invalid username or password'}));
 
         app.post('/signup', urlencodedParser, function(request,response)
         {	
@@ -75,7 +71,7 @@
                   address: request.body.address }},
                 {
                 upsert:false,
-                multi:true
+                multi:false
                 });  
                 
                 console.log('User registered!');
