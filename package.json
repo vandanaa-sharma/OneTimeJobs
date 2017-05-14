@@ -1,7 +1,7 @@
 {
-  "name": "onetimejob",
+  "name": "onetimejobs",
   "version": "1.0.0",
-  "description": "web server for onetimejob.com",
+  "description": "Web server for onetimejobs.com",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,6 @@
     "url": "git+https://github.com/onethena/OneTimeJobs.git"
   },
   "dependencies": {
-    "Q": "0.0.1",
     "bcrypt": "^1.0.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
