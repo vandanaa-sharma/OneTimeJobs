@@ -50,36 +50,33 @@
                     console.log('Something went wrong!', error);
                     if(error.name == "UserExistsError")
                     {
-                            /** TODO - redirect to user exists - sign in page */
-                            response.send("User exists");
+                        /** TODO - redirect to user exists - sign in page */
+                        response.send("Username already exists. Try another username");
+                        return;
                     }
                 }
-                 var user = 
+                /** Check if email is registered */
+                mydb.collection('users').findOne( {"email": request.body.email}, function (error, user)
+                {
+                    if(user)
                     {
-                        name : request.body.name,
-                        username : request.body.username,
-                        email : request.body.email,
-                        gender : request.body.gender,
-                        recruiter : request.body.recruiter,
-                        jobseeker : request.body.job_seeker,
-                        age : request.body.age,
-                        contactnumber: request.body.contactnumber,
-                        location : request.body.location,
-                        address: request.body.address
+                        response.send("An account with this email already exists. Try another email or sign in ");
+                        return;
                     }
-            
-            _serverLog(JSON.stringify(user));
-
-            /** Add user to database **/	
-            mydb.collection('users').insert(user, function(error, data)
-            {
-                if(error)
-                    _serverLog("FATAL - Something went wrong, user not added");
-                else
-                    _serverLog("User added to database successfully");
-            });       
-             console.log('User registered!');
-             response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
+                });
+                /** Update other data in database **/	
+                mydb.collection('users').update( {"username": request.body.username },
+                {$set :
+                { name : request.body.name, username : request.body.username, email: request.body.email, gender : request.body.gender,  recruiter : request.body.recruiter,
+                  jobseeker : request.body.job_seeker, age : request.body.age, contactnumber: request.body.contactnumber,location : request.body.location,
+                  address: request.body.address }},
+                {
+                upsert:false,
+                multi:true
+                });  
+                
+                console.log('User registered!');
+                response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
             });  
         });
         
