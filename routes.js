@@ -8,11 +8,11 @@
     var urlencodedParser = parser.urlencoded({extended : false});
     var cookieParser = require('cookie-parser');
 
-    /** Temporary session validator */
-    var signedin = 0;
-    var sessionuser="";
+    var passport = require('passport');
+    var Account = require('./models/user.js');
+    var LocalStrategy = require('passport-local').Strategy;
 
-    var routes = function (app, passport, mydb)
+    var routes = function (app, mydb)
     {
         app.get('/', function(request,response)
         {
@@ -22,6 +22,9 @@
         
         app.get('/signup', function(request,response)
         {
+            if(request.session.passport != undefined)
+                if(request.session.passport.user)
+                     response.send("You are signed in. Log out to register another user");
             _serverLog("Request received for sign up "+ Date.now());
             response.sendFile(__dirname + "/public/html/" + "signup.html" );
         });
@@ -37,68 +40,49 @@
         //                                                      failureFlash : 'Invalid username or password'}));
 
         app.post('/signup', urlencodedParser, function(request,response)
-        {		
+        {	
             _serverLog("New request user received");
-            /** Check if email already exists in database */
-            var exists = mydb.collection('users').find({ email: request.body.email }).user;
-            if(exists)
+            Account.register(new Account({username : request.body.username}), request.body.password,
+            function(error) 
             {
-                _serverLog("User exists in database");
-                response.sendFile(__dirname + "/public/html/" + "signup.html");
-                return;
-            }
-
-            var user = 
-            {
-                name : request.body.name,
-                username : request.body.username,
-                email : request.body.email,
-                gender : request.body.gender,
-                recruiter : request.body.recruiter,
-                jobseeker : request.body.job_seeker,
-                age : request.body.age,
-                contactnumber: request.body.contactnumber,
-                password : request.body.password,
-                location : request.body.location,
-                address: request.body.address
-            }
+                if (error) 
+                {
+                    console.log('Something went wrong!', error);
+                    if(error.name == "UserExistsError")
+                    {
+                            /** TODO - redirect to user exists - sign in page */
+                            response.send("User exists");
+                    }
+                }
+                 var user = 
+                    {
+                        name : request.body.name,
+                        username : request.body.username,
+                        email : request.body.email,
+                        gender : request.body.gender,
+                        recruiter : request.body.recruiter,
+                        jobseeker : request.body.job_seeker,
+                        age : request.body.age,
+                        contactnumber: request.body.contactnumber,
+                        location : request.body.location,
+                        address: request.body.address
+                    }
             
             _serverLog(JSON.stringify(user));
 
             /** Add user to database **/	
-            try
+            mydb.collection('users').insert(user, function(error, data)
             {
-                mydb.collection('users').insert(user, function(error, data)
-                {
-                    if(error)
-                        _serverLog("FATAL - Something went wrong, user not added");
-                    else
-                        _serverLog("User added to database successfully");
-                });
-                response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
-            }
-            catch(error)
-            {
-                _serverLog(error.stack);
-                _serverLog("FATAL - Something went wrong, user not added");
-                /** TODO - Revert the user to the registration page with flash error **/
-            }
-            
-            //response.end(JSON.stringify(user)); /** send json to browser **/
-            
-            // /** For newline use - "\r\n" in JavaScript **/
-            // user = JSON.stringify(user);
-            // /** Note that you are using "fileSytem.appendFile" instead of "writeFile" here to prevent overwriting **/
-            // user += "     |     ";
-            
-            // /** Temporary session wise heroku logs **/
-            // fileSystem.appendFile(__dirname + '/logs/users.txt', JSON.stringify(user), 'utf-8', {'flags': 'a+'}, function(error)
-            // {
-            //     if(error)
-            //         _serverLog(error.stack);
-            //     else
-            //         ; //_serverLog("User added to database");
-            // });
+                if(error)
+                    _serverLog("FATAL - Something went wrong, user not added");
+                else
+                    _serverLog("User added to database successfully");
+            });       
+            console.log('User registered!');
+            /** TODO - change window url */
+            user.message = "Registration successful!"
+            response.render('index', { user: user});
+            });  
         });
         
         /** For admins only - list of all users **/
@@ -122,41 +106,39 @@
             response.sendFile(__dirname + "/public/html/" + "signin.html" );
         });	
 
-        /** Temporary sign in  */
-        app.post("/signin", urlencodedParser, function (request, response)
+        app.post("/authenticate", urlencodedParser, passport.authenticate('local'), function (request, response)
         {
-             response.redirect('/profiles/' + request.body.username)      
+            var userURI = encodeURIComponent(request.body.username);         
+            response.redirect('/profiles/?user=' + request.body.username)                           
         });
 
-        app.get('/profiles/:username', urlencodedParser, function (request, response)
+        app.get('/profiles', function (request, response)
         {
-          // ,{"password": request.query['password']}
-          mydb.collection('users').findOne( {$and:[{"username": request.params.username}]}, function(err, user)
-          {
+            if(!request.session.passport)
+                response.send("Please log in to view your profile");
+            else if(request.session.passport && !request.session.passport.user)
+                response.send("Please log in to view your profile");
+
+            mydb.collection('users').findOne( {"username": request.query.user}, function(err, user)
+            {
               if(err || !user) 
               {
                 /* TODO - reload log in page with error message */
-                response.sendFile(__dirname + "/public/html/" + "signin.html" );
+                 response.redirect('/signin' );
               }
               else if(user)
               {
                  response.render('index', { user: user});
               }
-          });
-        });
+            })
+    });
           
  
-        app.get('/signout', function(request,response) 
-        {
-            /** TODO  */
-            response.sendFile(__dirname + "/public/html/" + "signin.html" );
-        });
-
-        /** Authentication using middleware - passport **/
-        /** TODO - handle success redirect **/
-        // app.post("/login",  passport.authenticate('signin', { successRedirect : '/',				
-        //                                                       failureRedirect : '/signin',
-        //                                                       failureFlash : 'Invalid username or password'}));
+    app.get('/signout', function(request,response) 
+    {
+        request.logout();
+        response.redirect('/signin');
+    });
                              
     }
 

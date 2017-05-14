@@ -15,9 +15,10 @@
 	var assert = require('assert');
 	/** Use passport for authentication */
 	var passport = require('passport');
-	/** Read deplyment based configuration settings **/
+	/** Read deployment based configuration settings **/
 	var config = require('./config')();			// './' is used here because it is a local module
 	var session = require('express-session');
+	var LocalStrategy = require('passport-local').Strategy;
 	var flash = require('connect-flash');		// used for flash messages during authentication
 	var cookieParser = require('cookie-parser');
 	/** Render elements using pug/jade*/
@@ -44,7 +45,7 @@
 		collection = db.collection('users');		
 		mydb = db;
 		/** Routes are initialised only when database is initialised */
-		require('./routes.js')(app, passport, mydb);
+		require('./routes.js')(app, mydb);
 		if(error)
 		{
 			_serverLog(error.stack);			
@@ -68,11 +69,25 @@
 	app.use(express.static(__dirname + '/public'));   
 	//app.use(express.static(__dirname + '/logs'));			// Not being used now
 
-	require('./config/passport.js')(passport);
 	/** Passport for authentication **/
-	app.use(session({secret:'sessionSecret'}));
+	app.use(require('express-session')({
+		secret: 'otj',
+		resave: false,
+		saveUninitialized: false
+	}));
 	app.use(passport.initialize());
 	app.use(passport.session());				// To support persistent sessions 
+
+	var Account = require('./models/user.js');
+	passport.use(new LocalStrategy(Account.authenticate()));
+	passport.serializeUser(Account.serializeUser());
+	passport.deserializeUser(Account.deserializeUser());
+
+	/** Prevents pages with secure information from re-loading on back key in browser */
+	app.use(function(req, res, next) {
+ 		 res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  		 next();
+	});
 
 	app.use(flash());
 	app.use(cookieParser());

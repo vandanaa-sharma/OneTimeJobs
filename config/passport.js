@@ -7,19 +7,23 @@
 var LocalStrategy = require('passport-local').Strategy;
 /** Import your user model */
 var user = require('../models/user.js');
-//var bCrypt = require('bcrypt');
+var bCrypt = require('bcrypt');
 
 module.exports = function (passport)
 {
     /** Serialize - Deserialize so that subsequent requests do not contain credentials */
-	passport.serializeUser(function(user, done) {
-		done(null, user._id);
-	});
-	passport.deserializeUser(function(id, done) {
-		User.findById(id, function(err, user) {
-			done(err, user);
-		});
-	});
+	// passport.serializeUser(function(user, done) {
+	// 	done(null, user._id);
+	// });
+	// passport.deserializeUser(function(id, done) {
+	// 	user.findById(id, function(err, user) {
+	// 		done(err, user);
+	// 	});
+	// });
+
+	passport.use(new LocalStrategy(user.authenticate()));
+	passport.serializeUser(user.serializeUser());
+	passport.deserializeUser(user.deserializeUser());
 
 	passport.use('signin', new LocalStrategy(
 	{

@@ -1,5 +1,5 @@
 h3 Your Profile
-form#signupform.formTable
+form#signupform.formTable()
   table(cellspacing='15', cellpadding='0')
     tbody
       tr
@@ -34,5 +34,11 @@ form#signupform.formTable
         td  Address :
         td
         .adrress=user.address
+      tr
+        td 
+        .message=user.message
+        br
+        td
+        
 
 a.floatRight(style='display: inline;', href='/signout') Sign out

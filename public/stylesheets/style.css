@@ -152,7 +152,7 @@ input				{ display: inline-block; width: 250px; height: 26px; font-size: 18px; c
 /** For mobile devices **/
 @media only screen and (max-width: 768px)
 {
-	#main { width: 90%; font-size: 12px; }
+	#main { width: 90%; font-size: 14px; }
 	table { margin: 0 0 0 -20px;}
 	input { width: 150px;  font-size: 15px;}
 	h2	{ font-size: 20px; font-weight: 400; margin: 15px 0;}

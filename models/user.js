@@ -5,21 +5,16 @@
 
 /** Mongoose is an object data modelling library **/
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 
-module.exports = mongoose.model('User', {
-
-    name : String,
+var User =  new Schema({
     username : String,
-    email : String,
-    gender : String,
-    recruiter : Number,
-    jobseeker : Number,
-    age : Number,
-    contactnumber: Number,
     password : String,
-    location : String,
-    address: String
-
 });
+
+User.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('User', User);
 
 /** Read about valid types here - http://mongoosejs.com/docs/schematypes.html */
