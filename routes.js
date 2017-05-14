@@ -78,10 +78,8 @@
                 else
                     _serverLog("User added to database successfully");
             });       
-            console.log('User registered!');
-            /** TODO - change window url */
-            user.message = "Registration successful!"
-            response.render('index', { user: user});
+             console.log('User registered!');
+             response.sendFile(__dirname + "/public/html/" + "registration-successful.html");
             });  
         });
         
