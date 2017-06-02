@@ -4,4 +4,22 @@ MongoDB NodeJS Notes -
 2. Import mongodb module in code
 3. Connect to local database URL
 4. Create a collection
-5. To add user => collection.insert
+5. To add user -
+	db.collectionName.insert({JSON})
+6. Find data -
+	db.collectionName.find({"key" : "value"})
+	db.collection.findOne({"key" : "value"})
+	db.collectionName.find({}) - List all
+7. Remove -
+	db.collectionName.remove({"key" : "value"})
+	db.collectionName.remove({}) - Remove all
+8. Update data -
+	 mydb.collection('users').update( {"username": request.body.username },
+                {$set :
+                {"key1" : "value1", "key2": "value2" }},
+                {
+                 upsert:false,
+                 multi:true
+                });  
+upsert = false - will not create user if missing
+multi = true - updates all documents that meet the query criteria

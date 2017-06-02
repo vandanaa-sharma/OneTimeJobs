@@ -22,12 +22,11 @@
         
         app.get('/signup', function(request,response)
         {
-            if(request.session.passport != undefined)
-                if(request.session.passport.user)
-                {
-                    response.send("You are signed in. Log out to register another user");
-                    return;
-                }              
+            if(request.isAuthenticated())
+            {
+                response.send("You are signed in. Log out to register another user");
+                return;
+            }              
             _serverLog("Request received for sign up "+ Date.now());
             response.sendFile(__dirname + "/public/html/" + "signup.html" );
         });
@@ -37,10 +36,6 @@
             _serverLog("Request received for wiki " + Date.now());
             response.sendFile(__dirname + "/public/html/" + "wiki.html" );
         });	
-        
-        // app.post('/signup',passport.authenticate('signup', { successRedirect : '/registration-successful',				
-        //                                                      failureRedirect : '/signup',
-        //                                                      failureFlash : 'Invalid username or password'}));
 
         app.post('/signup', urlencodedParser, function(request,response)
         {	
@@ -75,7 +70,7 @@
                   address: request.body.address }},
                 {
                 upsert:false,
-                multi:true
+                multi:false
                 });  
                 
                 console.log('User registered!');
@@ -101,6 +96,15 @@
         app.get('/signin', function(request,response)
         {
             _serverLog("Request received for login " + Date.now());
+            if(request.isAuthenticated())
+            {
+                // Check if same user is requested
+                if(request.query.user != request.session.passport.user)
+                    response.send("You are signed in. Log out first to sign in as a different user");
+                else
+                    response.send("You are already signed in");
+                return;
+            }        
             response.sendFile(__dirname + "/public/html/" + "signin.html" );
         });	
 
@@ -112,10 +116,17 @@
 
         app.get('/profiles', function (request, response)
         {
-            if(!request.session.passport)
+            if(!request.isAuthenticated())
+            {
                 response.send("Please log in to view your profile");
-            else if(request.session.passport && !request.session.passport.user)
-                response.send("Please log in to view your profile");
+                return;
+            }
+                
+            else if(request.query.user != request.session.passport.user)
+            {
+                 response.send("You are signed in. Log out first to sign in as a different user");
+                 return;
+            }
 
             mydb.collection('users').findOne( {"username": request.query.user}, function(err, user)
             {

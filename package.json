@@ -1,7 +1,7 @@
 {
   "name": "onetimejobs",
   "version": "1.0.0",
-  "description": "web server for onetimejob.com",
+  "description": "Web server for onetimejobs.com",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
