@@ -148,7 +148,15 @@
         request.logout();
         response.redirect('/signin');
     });
-                             
+
+    /** Git webhook **/
+    app.post('/gitpush', function(request,response)
+    {           
+        _serverLog("New code pushed to onetimejobs "+ Date.now());
+        /** TODO - send and email to onetimeejobs@gmail.com */
+         response.send(request); 
+    });
+                      
     }
 
     function _serverLog(message)
