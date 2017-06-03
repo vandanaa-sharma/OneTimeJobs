@@ -152,9 +152,8 @@
     /** Git webhook **/
     app.post('/gitpush', function(request,response)
     {           
-        _serverLog("New code pushed to onetimejobs "+ Date.now());
         /** TODO - send and email to onetimeejobs@gmail.com */
-         response.send(request); 
+         response.send("Git push received"); 
     });
                       
     }
