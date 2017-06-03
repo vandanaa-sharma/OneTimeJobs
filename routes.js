@@ -162,7 +162,6 @@
     /** Git webhook **/
     app.post('/gitpush', function(request,response)
     {           
-        /** TODO - send and email to onetimeejobs@gmail.com */
         var mailOptions = {
             from: process.env.GMAIL_USERNAME, 
             to: 'sarfarazchaudhary.k@gmail.com', 
