@@ -165,7 +165,7 @@
         /** TODO - send and email to onetimeejobs@gmail.com */
         var mailOptions = {
             from: process.env.GMAIL_USERNAME, 
-            to: 'vandanasharma536@gmail.com', 
+            to: 'sarfarazchaudhary.k@gmail.com', 
             subject: 'New code pushed to git repository', 
             html: "<p>Some new changes in code were pushed to your <a title=\"OneTimeJobs Git Repo\" href=\"https:\/\/github.com\/onethena\/OneTimeJobs\/\" target=\"_blank\">https:\/\/github.com\/onethena\/OneTimeJobs\/<\/a><br \/>Check latest commits here - <a title=\"Commit history - onethena\" href=\"https:\/\/github.com\/onethena\/OneTimeJobs\/commits\/onethena\" target=\"_blank\">https:\/\/github.com\/onethena\/OneTimeJobs\/commits\/onethena<\/a><\/p>" +
                   "<p>Cheers!&nbsp;<img src=\"https:\/\/html-cleaner.com\/tinymce2016\/plugins\/emoticons\/img\/smiley-cool.gif\" alt=\"cool\" \/><br \/>- OneTimeJobs<\/p>"
