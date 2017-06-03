@@ -159,7 +159,7 @@
         response.redirect('/signin');
     });
 
-    /** Git webhook **/
+    /** Git webhook - email notif **/
     app.post('/gitpush', function(request,response)
     {           
         var mailOptions = {
