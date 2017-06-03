@@ -153,7 +153,8 @@
     app.post('/gitpush', function(request,response)
     {           
         /** TODO - send and email to onetimeejobs@gmail.com */
-         response.send(JSON.parse(request.body)); 
+         console.log(request.body);
+         response.send("Git push received"); 
     });
                       
     }
