@@ -16,5 +16,11 @@ Change app name -
 heroku apps:rename NEWNAME --app APPNAME
 - Change heroku remote url after this
 
+To check config vars -
+heroku config --app appName     //onetimejobs
+
 Set Database URI - 
 heroku config:set --app AppName url
+
+Set config var - 
+heroku config:set --app appName VAR_NAME=value;

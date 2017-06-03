@@ -23,12 +23,14 @@
     "jade": "^1.11.0",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.5",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^4.0.0",
     "pug": "^2.0.0-rc.1",
-    "q": "^1.5.0"
+    "q": "^1.5.0",
+    "sendmail": "^1.1.1"
   },
   "keywords": [
     "webserver"

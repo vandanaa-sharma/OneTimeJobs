@@ -7,10 +7,20 @@
     var parser = require('body-parser');
     var urlencodedParser = parser.urlencoded({extended : false});
     var cookieParser = require('cookie-parser');
+    /** Send email on git push */
+    var nodemailer = require('nodemailer');
 
     var passport = require('passport');
     var Account = require('./models/user.js');
     var LocalStrategy = require('passport-local').Strategy;
+
+    var transporter = nodemailer.createTransport({
+            service: 'Gmail',
+            auth: {
+                user: process.env.GMAIL_USERNAME, 
+                pass: process.env.GMAIL_PASSWORD
+            }
+    });
 
     var routes = function (app, mydb)
     {
@@ -153,23 +163,38 @@
     app.post('/gitpush', function(request,response)
     {           
         /** TODO - send and email to onetimeejobs@gmail.com */
-         console.log(request);
-         response.send("Git push received"); 
-    });
-                      
-    }
+        var mailOptions = {
+            from: process.env.GMAIL_USERNAME, 
+            to: 'vandanasharma536@gmail.com', 
+            subject: 'New code pushed to git repository', 
+            text: JSON.parse(request)
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error)
+            {
+                console.log(error);
+                response.send('Error is sending email')
+            }
+            else
+            {
+                console.log('Message sent: ' + info.response);
+                response.send("Email sent to recipients");
+            };
+        }); 
+    });                    
+}
 
-    function _serverLog(message)
+function _serverLog(message)
+{
+    console.log(message);
+    var date = new Date();
+    var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
+    message = message + "  " + timeStamp + "\r\n";
+    /** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
+    fileSystem.appendFile(__dirname + '/logs/server_log.txt', message, 'utf-8', {'flags': 'a+'}, function (error) 
     {
-        console.log(message);
-        var date = new Date();
-        var timeStamp = date.getDate() + "/" + date.getMonth() + " " + date.getHours() + ":" + date.getMinutes();
-        message = message + "  " + timeStamp + "\r\n";
-        /** The argument {'flags': 'a+'} opens file for reading and appending so that existing data is not overwritten **/
-        fileSystem.appendFile(__dirname + '/logs/server_log.txt', message, 'utf-8', {'flags': 'a+'}, function (error) 
-        {
-            // Do nothings
-        });
-    }
+        // Do nothings
+    });
+}
 
-    module.exports = routes;
+module.exports = routes;
